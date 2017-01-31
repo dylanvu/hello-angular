@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Toggling DOM Elements</title>
+  </head>
+  <body>
+    <component></component>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+
+    <script>
+      angular.module('app', [])
+        .component('component', {
+          controller: function() {
+            const vm = this;
+
+            vm.$onInit = function() {
+              vm.tab = 1;
+            };
+
+            vm.setTab = function(number) {
+              vm.tab = number;
+            };
+          },
+
+          template: `
+            <button ng-click="$ctrl.setTab(1)">Tab 1</button>
+            <button ng-click="$ctrl.setTab(2)">Tab 2</button>
+
+            <div ng-if="$ctrl.tab === 1">
+              Tab 1
+            </div>
+
+            <div ng-if="$ctrl.tab === 2">
+              Tab 2
+            </div>
+          `
+        });
+    </script>
+  </body>
+</html>
