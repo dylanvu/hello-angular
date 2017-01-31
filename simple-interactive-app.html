@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Interactive App</title>
+  </head>
+  <body>
+
+    <h1>Amazing Time Machine</h1>
+
+    <greeting></greeting>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+
+    <script>
+      angular.module("app", [])
+        .component('greeting', {
+
+          controller: function() {
+            const vm = this;
+
+            vm.$onInit = function() {
+              vm.time = new Date();
+            };
+
+            vm.updateTime = function() {
+              vm.time = new Date();
+            };
+          },
+
+          template: `
+            <p>What time is it?</p>
+            <p>{{ $ctrl.time }}</p>
+            <input type="submit" value="Update Time" ng-click="$ctrl.updateTime()"/>
+          `
+        })
+    </script>
+  </body>
+</html>
