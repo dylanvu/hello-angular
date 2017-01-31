@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Filters</title>
+  </head>
+  <style>
+    html {
+      font-family: sans-serif;
+    }
+    h3, p {
+      display: inline;
+      margin-top: 1em;
+    }
+    .power { color: magenta }
+  </style>
+  <body>
+    <h1>Comic Book Characters</h1>
+
+    <comic-book></comic-book>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+
+    <script>
+      angular.module('app', [])
+        .component('comicBook', {
+          controller: function() {
+            const vm = this;
+
+            vm.$onInit = function() {
+              vm.myNumber = 3.14159265359;
+
+              vm.characters = [
+                { id: 1, name: 'Sloppy Joe', superpower: 'flavor'},
+                { id: 2, name: 'Matilda', superpower: 'adorability' },
+                { id: 3, name: 'Batman', superpower: 'nothing'}
+              ];
+            };
+          },
+
+          template: `
+            <p>Number: {{ $ctrl.myNumber }}</p>
+            <br>
+            <p>Filtered Number: {{ $ctrl.myNumber | number:2 }}</p>
+            <br>
+            <select ng-model="$ctrl.propertyToOrderBy">
+              <option value="name">Name</option>
+              <option value="superpower">Superpower</option>
+            </select>
+
+            <div ng-repeat="character in $ctrl.characters | orderBy:$ctrl.propertyToOrderBy | limitTo:2">
+              <div>
+                <h3>{{ character.name }}</h3>
+                <p>save us with your</p>
+                <p class="power">{{ character.superpower }}</p>
+              </div>
+            </div>
+          `
+        });
+    </script>
+  </body>
+</html>
