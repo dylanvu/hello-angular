@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Bind Forms to Objects</title>
+  </head>
+  <body>
+    <app></app>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+
+    <script>
+      angular.module('app', [])
+        .component('app', {
+          controller: function() {
+            const vm = this;
+
+            vm.setCar = function() {
+              vm.car = { make: 'Tesla', model: 'Model S', year: '2017' };
+            };
+
+            vm.createCar = function() {
+              console.log(vm.car);
+              delete vm.car;
+              vm.setCar();
+            };
+
+            vm.$onInit = function() {
+              vm.setCar();
+            }
+          },
+
+          template: `
+            <form ng-submit="$ctrl.createCar()">
+              <input type="text" ng-model="$ctrl.car.make"/>
+              <input type="text" ng-model="$ctrl.car.model"/>
+              <input type="text" ng-model="$ctrl.car.year"/>
+              <input type="submit"/>
+            </form>
+
+            {{ $ctrl.car | json }}
+          `
+        });
+    </script>
+  </body>
+</html>
