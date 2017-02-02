@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Directives</title>
+  </head>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+
+    <component></component>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+
+    <script>
+      angular.module('app', [])
+        .component('component', {
+          template: `
+            <div ng-class='{ highlight: 4 + 4 == 8 }'> 4 + 4 = 8</div>
+            <div ng-class='{ highlight: 4 + 4 == 10 }'> 4 + 4 = 10</div>
+          `
+        });
+    </script>
+  </body>
+</html>
