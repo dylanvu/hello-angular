@@ -16,17 +16,7 @@
       angular.module("app", [])
         .component('greeting', {
 
-          controller: function() {
-            const vm = this;
-
-            vm.$onInit = function() {
-              vm.time = new Date();
-            };
-
-            vm.updateTime = function() {
-              vm.time = new Date();
-            };
-          },
+          controller: controller,
 
           template: `
             <p>What time is it?</p>
@@ -34,6 +24,18 @@
             <input type="submit" value="Update Time" ng-click="$ctrl.updateTime()"/>
           `
         })
+
+      function controller() {
+        const vm = this;
+
+        vm.$onInit = function() {
+          vm.time = new Date();
+        };
+
+        vm.updateTime = function() {
+          vm.time = new Date();
+        };
+      }
     </script>
   </body>
 </html>
