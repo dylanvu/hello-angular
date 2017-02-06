@@ -3,20 +3,7 @@
 
   angular.module('app', ['ngMessages'])
     .component('validations', {
-      controller: function() {
-        const vm = this;
-
-        vm.submitForm = function(e, isValid) {
-          e.preventDefault();
-          vm.users = vm.users || [];
-          if (isValid) {
-            vm.users.push(vm.user);
-            vm.user = {};
-            vm.userForm.$setPristine();
-          }
-        }
-      },
-
+      controller: controller,
       template: `
         <h1>Users</h1>
 
@@ -134,4 +121,18 @@
         </form>
       `
     });
+
+    function controller() {
+      const vm = this;
+
+      vm.submitForm = function(e, isValid) {
+        e.preventDefault();
+        vm.users = vm.users || [];
+        if (isValid) {
+          vm.users.push(vm.user);
+          vm.user = {};
+          vm.userForm.$setPristine();
+        }
+      }
+    }
 }());
