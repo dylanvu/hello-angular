@@ -24,19 +24,7 @@
     <script>
       angular.module('app', [])
         .component('comicBook', {
-          controller: function() {
-            const vm = this;
-
-            vm.$onInit = function() {
-              vm.myNumber = 3.14159265359;
-
-              vm.characters = [
-                { id: 1, name: 'Sloppy Joe', superpower: 'flavor'},
-                { id: 2, name: 'Matilda', superpower: 'adorability' },
-                { id: 3, name: 'Batman', superpower: 'nothing'}
-              ];
-            };
-          },
+          controller: controller,
 
           template: `
             <p>Number: {{ $ctrl.myNumber }}</p>
@@ -57,6 +45,20 @@
             </div>
           `
         });
+
+      function controller() {
+        const vm = this;
+
+        vm.$onInit = function() {
+          vm.myNumber = 3.14159265359;
+
+          vm.characters = [
+            { id: 1, name: 'Sloppy Joe', superpower: 'flavor'},
+            { id: 2, name: 'Matilda', superpower: 'adorability' },
+            { id: 3, name: 'Batman', superpower: 'nothing'}
+          ];
+        };
+      },
     </script>
   </body>
 </html>
