@@ -12,23 +12,7 @@
     <script>
       angular.module('app', [])
         .component('app', {
-          controller: function() {
-            const vm = this;
-
-            vm.setCar = function() {
-              vm.car = { make: 'Tesla', model: 'Model S', year: '2017' };
-            };
-
-            vm.createCar = function() {
-              console.log(vm.car);
-              delete vm.car;
-              vm.setCar();
-            };
-
-            vm.$onInit = function() {
-              vm.setCar();
-            }
-          },
+          controller: controller,
 
           template: `
             <form ng-submit="$ctrl.createCar()">
@@ -41,6 +25,24 @@
             {{ $ctrl.car | json }}
           `
         });
+
+      function controller() {
+        const vm = this;
+
+        vm.setCar = function() {
+          vm.car = { make: 'Tesla', model: 'Model S', year: '2017' };
+        };
+
+        vm.createCar = function() {
+          console.log(vm.car);
+          delete vm.car;
+          vm.setCar();
+        };
+
+        vm.$onInit = function() {
+          vm.setCar();
+        }
+      }
     </script>
   </body>
 </html>
